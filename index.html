@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            opacity: 0;
+            animation: sparkle 1s infinite;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+            border-radius: 50%; /* Make the aura round */
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const numStars = 100;
+            const container = document.body;
+
+            for (let i = 0; i < numStars; i++) {
+                createStar();
+            }
+
+            function createStar() {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                const randomX = Math.random() * window.innerWidth;
+                const randomY = Math.random() * window.innerHeight;
+                const randomDelay = Math.random() * 2;
+                const randomDuration = 2 + Math.random() * 4;
+                const randomSize = Math.random() * 4;
+
+                star.style.left = `${randomX}px`;
+                star.style.top = `${randomY}px`;
+                star.style.animationDelay = `-${randomDelay}s`;
+                star.style.animationDuration = `${randomDuration}s`;
+                star.style.width = `${randomSize}px`;
+                star.style.height = `${randomSize}px`;
+
+                container.appendChild(star);
+            }
+        });
+    </script>
+</body>
+</html>
