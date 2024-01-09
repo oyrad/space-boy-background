@@ -25,7 +25,9 @@
         }
 
         .star-clicked {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Increased box shadow for glowing effect on click */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), /* Default box shadow for clicked stars */
+                        0 0 20px rgba(255, 255, 255, 0.5), /* Inner circle */
+                        0 0 30px rgba(255, 255, 255, 0.3); 
         }
 
         @keyframes sparkle {
