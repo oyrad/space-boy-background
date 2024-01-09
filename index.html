@@ -82,20 +82,14 @@
                 const star = document.createElement('div');
                 star.classList.add('star');
 
-                const randomX = event.clientX;
-                const randomY = event.clientY;
-                const randomSize = Math.random() * 4;
-                const randomOpacity = 0.3 + Math.random() * 0.7;
-
-                star.style.left = `${randomX}px`;
-                star.style.top = `${randomY}px`;
-                star.style.width = `${randomSize}px`;
-                star.style.height = `${randomSize}px`;
-                star.style.opacity = randomOpacity;
+                star.style.left = `${event.clientX}px`;
+                star.style.top = `${event.clientY}px`;
+                star.style.width = `12px`;
+                star.style.height = `12px`;
+                star.style.opacity = 1;
 
                 body.appendChild(star);
 
-                // Fading away after 2 seconds
                 setTimeout(() => {
                     star.style.opacity = 0;
                 }, 2000);
