@@ -1,113 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            position: relative;
-            height: 100vh;
-            background: linear-gradient(#000, #000, #000, #000025); /* Dark blue gradient at the bottom */
-        }
+      body {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        height: 100vh;
+        background: linear-gradient(#000, #000, #000, #000, #000022);
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background-color: #fff;
-            opacity: 1;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            animation: sparkle 1s infinite; /* Added animation for stars on page load */
-            transition: opacity 2s ease-in-out; /* Added transition for fading effect */
-        }
+      .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background-color: #fff;
+        opacity: 1;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        animation: sparkle 1s infinite; /* Added animation for stars on page load */
+        transition: opacity 2s ease-in-out; /* Added transition for fading effect */
+      }
 
-        .star-clicked {
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), /* Default box shadow for clicked stars */
-                        0 0 20px rgba(255, 255, 255, 0.5), /* Inner circle */
-                        0 0 30px rgba(255, 255, 255, 0.3); 
-        }
+      .star-clicked {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+          /* Default box shadow for clicked stars */ 0 0 20px
+            rgba(255, 255, 255, 0.5),
+          /* Inner circle */ 0 0 30px rgba(255, 255, 255, 0.3);
+      }
 
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
         }
+        50% {
+          opacity: 1;
+        }
+      }
 
-        .container {
-            width: 80%;
-            max-width: 600px; /* Max width for better readability on larger screens */
-            padding: 0 10px; /* Horizontal padding for better readability on mobile */
-            position: relative;
-            z-index: 1; /* Ensure the container is above the stars */
-        }
+      .container {
+        width: 80%;
+        max-width: 600px; /* Max width for better readability on larger screens */
+        padding: 0 10px; /* Horizontal padding for better readability on mobile */
+        position: relative;
+        z-index: 1; /* Ensure the container is above the stars */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!--     <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/T-PucUDwqlg?si=Ya1LQnwcyXupbbuW"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe> -->
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const numStarsOnLoad = 100;
-            const body = document.body;
+      document.addEventListener("DOMContentLoaded", function () {
+        const numStarsOnLoad = 100;
+        const body = document.body;
 
-            for (let i = 0; i < numStarsOnLoad; i++) {
-                createStar();
-            }
+        for (let i = 0; i < numStarsOnLoad; i++) {
+          createStar();
+        }
 
-            function createStar() {
-                const star = document.createElement('div');
-                star.classList.add('star');
+        function createStar() {
+          const star = document.createElement("div");
+          star.classList.add("star");
 
-                const randomX = Math.random() * window.innerWidth;
-                const randomY = Math.random() * window.innerHeight;
-                const randomDelay = Math.random() * 2;
-                const randomDuration = 2 + Math.random() * 4;
-                const randomSize = Math.random() * 4;
-                const randomOpacity = 0.3 + Math.random() * 0.7;
+          const randomX = Math.random() * window.innerWidth;
+          const randomY = Math.random() * window.innerHeight;
+          const randomDelay = Math.random() * 2;
+          const randomDuration = 2 + Math.random() * 4;
+          const randomSize = Math.random() * 4;
+          const randomOpacity = 0.3 + Math.random() * 0.7;
 
-                star.style.left = `${randomX}px`;
-                star.style.top = `${randomY}px`;
-                star.style.animationDelay = `-${randomDelay}s`;
-                star.style.animationDuration = `${randomDuration}s`;
-                star.style.width = `${randomSize}px`;
-                star.style.height = `${randomSize}px`;
-                star.style.opacity = randomOpacity;
+          star.style.left = `${randomX}px`;
+          star.style.top = `${randomY}px`;
+          star.style.animationDelay = `-${randomDelay}s`;
+          star.style.animationDuration = `${randomDuration}s`;
+          star.style.width = `${randomSize}px`;
+          star.style.height = `${randomSize}px`;
+          star.style.opacity = randomOpacity;
 
-                body.appendChild(star);
-            }
+          body.appendChild(star);
+        }
 
-            body.addEventListener('click', function(event) {
-                createStarOnClick(event);
-            });
-
-            function createStarOnClick(event) {
-                const star = document.createElement('div');
-                star.classList.add('star', 'star-clicked');
-
-                const randomSize = 4 + Math.random() * 4;
-
-
-                star.style.left = `${event.clientX}px`;
-                star.style.top = `${event.clientY}px`;
-                star.style.width = `${randomSize}px`;
-                star.style.height = `${randomSize}px`;
-                star.style.opacity = 1;
-                star.style.animation = "none"
-
-                body.appendChild(star);
-
-                setTimeout(() => {
-                    star.style.opacity = 0;
-                    setTimeout(() => {
-                        body.removeChild(star);
-                    }, 3000);
-                }, 200);
-            }
+        body.addEventListener("click", function (event) {
+          createStarOnClick(event);
         });
+
+        function createStarOnClick(event) {
+          const star = document.createElement("div");
+          star.classList.add("star", "star-clicked");
+
+          star.style.left = `${event.clientX}px`;
+          star.style.top = `${event.clientY}px`;
+          star.style.width = `7px`;
+          star.style.height = `7px`;
+          star.style.opacity = 1;
+          star.style.animation = "none";
+
+          body.appendChild(star);
+
+          setTimeout(() => {
+            star.style.opacity = 0;
+            setTimeout(() => {
+              body.removeChild(star);
+            }, 3000);
+          }, 200);
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
