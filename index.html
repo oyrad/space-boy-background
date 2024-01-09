@@ -24,6 +24,10 @@
             transition: opacity 2s ease-in-out; /* Added transition for fading effect */
         }
 
+        .star-clicked {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Increased box shadow for glowing effect on click */
+        }
+
         @keyframes sparkle {
             0%, 100% {
                 opacity: 0;
@@ -80,12 +84,15 @@
 
             function createStarOnClick(event) {
                 const star = document.createElement('div');
-                star.classList.add('star');
+                star.classList.add('star', 'star-clicked');
+
+                const randomSize = 2 + Math.random() * 4;
+
 
                 star.style.left = `${event.clientX}px`;
                 star.style.top = `${event.clientY}px`;
-                star.style.width = `8px`;
-                star.style.height = `8px`;
+                star.style.width = `${randomSize}px`;
+                star.style.height = `${randomSize}px`;
                 star.style.opacity = 1;
                 star.style.animation = "none"
 
@@ -100,9 +107,5 @@
             }
         });
     </script>
-
-    <div class="container">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/T-PucUDwqlg?si=o5b_uOU6x_DML3Wy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
 </body>
 </html>
