@@ -84,15 +84,19 @@
 
                 star.style.left = `${event.clientX}px`;
                 star.style.top = `${event.clientY}px`;
-                star.style.width = `12px`;
-                star.style.height = `12px`;
+                star.style.width = `8px`;
+                star.style.height = `8px`;
                 star.style.opacity = 1;
+                star.style.animation = "none"
 
                 body.appendChild(star);
 
                 setTimeout(() => {
                     star.style.opacity = 0;
-                }, 2000);
+                    setTimeout(() => {
+                        body.removeChild(star);
+                    }, 3000);
+                }, 200);
             }
         });
     </script>
