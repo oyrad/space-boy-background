@@ -14,65 +14,93 @@
             background-color: #000;
         }
 
+        .container {
+            width: 80%;
+            max-width: 600px; /* Max width for better readability on larger screens */
+            padding: 0 10px; /* Horizontal padding for better readability on mobile */
+            position: relative; /* Needed for the absolute positioning of stars */
+        }
+
         .star {
             position: absolute;
             width: 2px;
             height: 2px;
             background-color: #fff;
-            opacity: 0;
-            animation: sparkle 1s infinite;
+            opacity: 1;
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-        }
-
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
-        iframe {
-            border: none;
         }
     </style>
 </head>
 <body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const numStars = 100;
-            const container = document.body;
+    <div class="container">
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const container = document.querySelector('.container');
 
-            for (let i = 0; i < numStars; i++) {
-                createStar();
-            }
+                container.addEventListener('click', createStar);
+                container.addEventListener('touchstart', createStar);
 
-            function createStar() {
-                const star = document.createElement('div');
-                star.classList.add('star');
+                function createStar(event) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
 
-                const randomX = Math.random() * window.innerWidth;
-                const randomY = Math.random() * window.innerHeight;
-                const randomDelay = Math.random() * 2;
-                const randomDuration = 2 + Math.random() * 4;
-                const randomSize = Math.random() * 4;
-                const randomOpacity = 0.3 + Math.random() * 0.7; // Adjust opacity range
+                    const randomX = event.clientX || event.touches[0].clientX;
+                    const randomY = event.clientY || event.touches[0].clientY;
+                    const randomSize = Math.random() * 4;
+                    const randomOpacity = 0.3 + Math.random() * 0.7;
 
-                star.style.left = `${randomX}px`;
-                star.style.top = `${randomY}px`;
-                star.style.animationDelay = `-${randomDelay}s`;
-                star.style.animationDuration = `${randomDuration}s`;
-                star.style.width = `${randomSize}px`;
-                star.style.height = `${randomSize}px`;
-                star.style.opacity = randomOpacity;
+                    star.style.left = `${randomX}px`;
+                    star.style.top = `${randomY}px`;
+                    star.style.width = `${randomSize}px`;
+                    star.style.height = `${randomSize}px`;
+                    star.style.opacity = randomOpacity;
 
-                container.appendChild(star);
-            }
-        });
-    </script>
+                    container.appendChild(star);
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/T-PucUDwqlg?si=o5b_uOU6x_DML3Wy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    // Fading away without animation
+                    setTimeout(() => {
+                        container.removeChild(star);
+                    }, 1000); // Adjust the duration as needed
+                }
+            });
+        </script>
+
+        <!-- Original Stars Code -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const numStars = 100;
+                const container = document.querySelector('.container');
+
+                for (let i = 0; i < numStars; i++) {
+                    createStar();
+                }
+
+                function createStar() {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+
+                    const randomX = Math.random() * container.clientWidth;
+                    const randomY = Math.random() * container.clientHeight;
+                    const randomDelay = Math.random() * 2;
+                    const randomDuration = 2 + Math.random() * 4;
+                    const randomSize = Math.random() * 4;
+                    const randomOpacity = 0.3 + Math.random() * 0.7;
+
+                    star.style.left = `${randomX}px`;
+                    star.style.top = `${randomY}px`;
+                    star.style.animationDelay = `-${randomDelay}s`;
+                    star.style.animationDuration = `${randomDuration}s`;
+                    star.style.width = `${randomSize}px`;
+                    star.style.height = `${randomSize}px`;
+                    star.style.opacity = randomOpacity;
+
+                    container.appendChild(star);
+                }
+            });
+        </script>
+
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/T-PucUDwqlg?si=o5b_uOU6x_DML3Wy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
 </body>
 </html>
